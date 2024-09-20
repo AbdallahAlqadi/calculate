@@ -6,26 +6,46 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
-}
-
-.calculator {
+    /* Add a subtle gradient background with a twist */
+    background-image: linear-gradient(to bottom, #f4f4f4, #e7e7e7);
+    background-size: 100% 200px;
+    background-position: 0% 100%;
+    transition: background-position 0.5s ease-in-out;
+  }
+  
+  body:hover {
+    background-position: 100% 100%;
+  }
+  
+  .calculator {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    animation: calculator-scale 0.3s ease-in-out;
-}
-
-@keyframes calculator-scale {
+    /* Add a slight elevation effect with a bounce */
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .calculator:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    animation: bounce 0.5s ease-in-out;
+  }
+  
+  @keyframes bounce {
     0% {
-        transform: scale(0.9);
+      transform: translateY(-5px);
+    }
+    50% {
+      transform: translateY(-10px);
     }
     100% {
-        transform: scale(1);
+      transform: translateY(-5px);
     }
-}
-
-#display {
+  }
+  
+  #display {
     width: 100%;
     height: 50px;
     font-size: 24px;
@@ -35,34 +55,87 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-left: -3%;
-    animation: display-fade 0.3s ease-in-out;
-}
-
-@keyframes display-fade {
+    /* Add a smooth animation for display updates with a fade-in effect */
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
     0% {
-        opacity: 0;
+      opacity: 0;
     }
     100% {
-        opacity: 1;
+      opacity: 1;
     }
-}
-
-.buttons {
+  }
+  
+  .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-}
-
-button {
+  }
+  
+  button {
     padding: 20px;
     font-size: 18px;
     border: none;
     background-color: #f0f0f0;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-}
-
-button:hover {
+    /* Add a hover effect with animation and a ripple effect */
+    transition: background-color 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    /* Add a 3D effect on hover */
+    transform: perspective(1000px) translateZ(0);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  button:hover {
     background-color: #ddd;
-}
+    /* Add a slight scale effect on hover */
+    transform: scale(1.05) translateZ(10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  button:active {
+    /* Add a pressed effect on click */
+    transform: scale(0.95) translateZ(-10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background-color: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  button:hover::after {
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  
+  /* Add a loading animation on click */
+  button:active::after {
+    animation: loading 1s ease-in-out infinite;
+  }
+  
+  @keyframes loading {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
