@@ -13,6 +13,16 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: calculator-scale 0.3s ease-in-out;
+}
+
+@keyframes calculator-scale {
+    0% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 #display {
@@ -25,6 +35,16 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-left: -3%;
+    animation: display-fade 0.3s ease-in-out;
+}
+
+@keyframes display-fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .buttons {
@@ -40,6 +60,7 @@ button {
     background-color: #f0f0f0;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 }
 
 button:hover {
