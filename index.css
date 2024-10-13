@@ -134,3 +134,11 @@ footer {
         margin: 10px; /* تقليل المسافة بين المنتجات */
     }
 }
+
+@media (min-width: 0px) and (max-width: 575px) {   
+
+    .product {
+       
+    margin-bottom: 12%;
+    }
+}
