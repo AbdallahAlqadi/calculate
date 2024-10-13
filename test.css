@@ -16,15 +16,18 @@ body {
 
 /* Adjust header to stand out against the background */
 header {
-    background-color: rgba(0, 0, 0, 0.7); /* خلفية شفافة جزئياً */
+    background-color: rgba(0, 0, 0, 0.8); /* خلفية شفافة جزئياً */
     color: #fff;
-    padding: 20px 0;
+    padding: 30px 0; /* زيادة الحشوة */
     text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* إضافة ظل */
+    border-bottom: 3px solid #d2691e; /* إضافة حد سفلي */
 }
 
 header h1 {
     margin-bottom: 10px;
-    font-size: 2.5em;
+    font-size: 2.8em; /* زيادة حجم العنوان */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); /* إضافة ظل للنص */
 }
 
 header p {
@@ -34,17 +37,19 @@ header p {
 /* Product Section Styling */
 .products {
     max-width: 1200px;
-    margin: 30px auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* خلفية بيضاء شفافة قليلاً */
-    border-radius: 10px;
+    margin: 40px auto; /* زيادة المسافة */
+    padding: 30px; /* زيادة الحشوة */
+    background-color: rgba(255, 255, 255, 0.9); /* خلفية بيضاء شفافة قليلاً */
+    border-radius: 15px; /* زيادة الزوايا */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* إضافة ظل */
 }
 
 .products h2 {
     text-align: center;
     margin-bottom: 20px;
-    font-size: 28px;
+    font-size: 30px; /* زيادة حجم العنوان */
     color: #8b4513; /* نفس اللون البني الداكن */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* إضافة ظل للنص */
 }
 
 .product {
@@ -52,22 +57,23 @@ header p {
     border: 1px solid #d2b48c; /* لون حد فاتح بلون بيج */
     padding: 20px;
     margin: 20px;
-    border-radius: 10px;
+    border-radius: 15px; /* زيادة الزوايا */
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* إضافة انتقال للظل */
 }
 
 .product img {
     width: 100%;
-    max-width: 150px;
+    max-width: 180px; /* زيادة العرض الأقصى للصورة */
     height: auto;
-    border-radius: 10px;
+    border-radius: 15px; /* زيادة الزوايا */
+    transition: transform 0.3s ease; /* إضافة انتقال */
 }
 
 .product h3 {
     margin-top: 10px;
-    font-size: 22px;
+    font-size: 24px; /* زيادة حجم العنوان */
     color: #d2691e; /* لون برتقالي داكن يوحي بالتوابل */
 }
 
@@ -77,22 +83,23 @@ header p {
     color: #5c4033; /* لون النص بني */
 }
 
+/* تأثير التحويم على المنتج */
 .product:hover {
     transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* إضافة ظل عند التحويم */
 }
 
 footer {
     text-align: center;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.7); /* بني داكن شفاف */
+    padding: 15px; /* زيادة الحشوة */
+    background-color: rgba(0, 0, 0, 0.8); /* بني داكن شفاف */
     color: white;
     position: relative;
     bottom: 0;
     width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5); /* إضافة ظل */
 }
 
 .product img:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     transform: scale(1.1); /* تكبير الصورة عند التمرير */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
