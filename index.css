@@ -73,7 +73,6 @@ header p {
     text-align: center;
     box-shadow: 0 4px 8px var(--shadow-color); /* إضافة ظل */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* إضافة انتقال للظل */
-margin-bottom: 3.5%;
 }
 
 
