@@ -21,7 +21,7 @@ header {
     padding: 30px 0; /* زيادة الحشوة */
     text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* إضافة ظل */
-    border-bottom: 3px solid #d2691e; /* إضافة حد سفلي */
+    /* حذف حد الخلفية */
 }
 
 header h1 {
