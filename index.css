@@ -53,6 +53,7 @@ header p {
     background-color: var(--primary-bg); /* خلفية بيضاء شفافة قليلاً */
     border-radius: 15px; /* زيادة الزوايا */
     box-shadow: 0 4px 20px var(--shadow-color); /* إضافة ظل */
+    margin-bottom: 4%;
 }
 
 .products h2 {
