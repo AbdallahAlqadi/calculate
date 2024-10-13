@@ -1,0 +1,98 @@
+/* Reset بعض التنسيقات */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-image: url('خلفيه.jpeg'); /* خلفية الخريطة */
+    background-size: cover; /* تأكد من ملاءمة الصورة للخلفية بالكامل */
+    background-position: center;
+    color: #3b3029; /* لون نص أغمق للتباين */
+}
+
+/* Adjust header to stand out against the background */
+header {
+    background-color: rgba(0, 0, 0, 0.7); /* خلفية شفافة جزئياً */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+header p {
+    font-size: 18px;
+}
+
+/* Product Section Styling */
+.products {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* خلفية بيضاء شفافة قليلاً */
+    border-radius: 10px;
+}
+
+.products h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #8b4513; /* نفس اللون البني الداكن */
+}
+
+.product {
+    background-color: #fffaf0; /* خلفية فاتحة بلون كريم */
+    border: 1px solid #d2b48c; /* لون حد فاتح بلون بيج */
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product h3 {
+    margin-top: 10px;
+    font-size: 22px;
+    color: #d2691e; /* لون برتقالي داكن يوحي بالتوابل */
+}
+
+.product p {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #5c4033; /* لون النص بني */
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7); /* بني داكن شفاف */
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.product img:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1); /* تكبير الصورة عند التمرير */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
