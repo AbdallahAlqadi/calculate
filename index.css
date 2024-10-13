@@ -1,4 +1,16 @@
-/* Reset بعض التنسيقات */
+/* استخدام متغيرات CSS لتسهيل تغيير الألوان */
+:root {
+    --primary-bg: rgba(255, 255, 255, 0.9);
+    --secondary-bg: rgba(0, 0, 0, 0.8);
+    --dark-color: #3b3029;
+    --light-color: #fffaf0;
+    --border-color: #d2b48c;
+    --text-color: #5c4033;
+    --highlight-color: #d2691e;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Reset some styles */
 * {
     margin: 0;
     padding: 0;
@@ -11,21 +23,20 @@ body {
     background-image: url('خلفيه.jpeg'); /* خلفية الخريطة */
     background-size: cover; /* تأكد من ملاءمة الصورة للخلفية بالكامل */
     background-position: center;
-    color: #3b3029; /* لون نص أغمق للتباين */
+    color: var(--dark-color); /* لون نص أغمق للتباين */
 }
 
 /* Adjust header to stand out against the background */
 header {
-    background-color: rgba(0, 0, 0, 0.8); /* خلفية شفافة جزئياً */
+    background-color: var(--secondary-bg); /* خلفية شفافة جزئياً */
     color: #fff;
-    padding: 30px 0; /* زيادة الحشوة */
+    padding: 40px 20px; /* زيادة الحشوة */
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* إضافة ظل */
-    /* حذف حد الخلفية */
+    box-shadow: 0 2px 10px var(--shadow-color); /* إضافة ظل */
 }
 
 header h1 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: 2.8em; /* زيادة حجم العنوان */
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); /* إضافة ظل للنص */
 }
@@ -39,9 +50,9 @@ header p {
     max-width: 1200px;
     margin: 40px auto; /* زيادة المسافة */
     padding: 30px; /* زيادة الحشوة */
-    background-color: rgba(255, 255, 255, 0.9); /* خلفية بيضاء شفافة قليلاً */
+    background-color: var(--primary-bg); /* خلفية بيضاء شفافة قليلاً */
     border-radius: 15px; /* زيادة الزوايا */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* إضافة ظل */
+    box-shadow: 0 4px 20px var(--shadow-color); /* إضافة ظل */
 }
 
 .products h2 {
@@ -53,13 +64,13 @@ header p {
 }
 
 .product {
-    background-color: #fffaf0; /* خلفية فاتحة بلون كريم */
-    border: 1px solid #d2b48c; /* لون حد فاتح بلون بيج */
+    background-color: var(--light-color); /* خلفية فاتحة بلون كريم */
+    border: 1px solid var(--border-color); /* لون حد فاتح بلون بيج */
     padding: 20px;
     margin: 20px;
     border-radius: 15px; /* زيادة الزوايا */
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل */
+    box-shadow: 0 4px 8px var(--shadow-color); /* إضافة ظل */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* إضافة انتقال للظل */
 }
 
@@ -74,32 +85,43 @@ header p {
 .product h3 {
     margin-top: 10px;
     font-size: 24px; /* زيادة حجم العنوان */
-    color: #d2691e; /* لون برتقالي داكن يوحي بالتوابل */
+    color: var(--highlight-color); /* لون برتقالي داكن يوحي بالتوابل */
 }
 
 .product p {
     font-size: 16px;
     margin-top: 10px;
-    color: #5c4033; /* لون النص بني */
+    color: var(--text-color); /* لون النص بني */
 }
 
 /* تأثير التحويم على المنتج */
 .product:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* إضافة ظل عند التحويم */
+    box-shadow: 0 8px 16px var(--shadow-color); /* إضافة ظل عند التحويم */
 }
 
 footer {
     text-align: center;
-    padding: 15px; /* زيادة الحشوة */
-    background-color: rgba(0, 0, 0, 0.8); /* بني داكن شفاف */
+    padding: 20px; /* زيادة الحشوة */
+    background-color: var(--secondary-bg); /* بني داكن شفاف */
     color: white;
     position: relative;
     bottom: 0;
     width: 100%;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5); /* إضافة ظل */
+    box-shadow: 0 -2px 10px var(--shadow-color); /* إضافة ظل */
 }
 
+/* تأثير تكبير الصورة عند التحويم */
 .product img:hover {
     transform: scale(1.1); /* تكبير الصورة عند التمرير */
+}
+
+/* استعلامات وسائط لجعل التصميم أكثر استجابة */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2em; /* تقليل حجم العنوان على الشاشات الصغيرة */
+    }
+    .product {
+        margin: 10px; /* تقليل المسافة بين المنتجات */
+    }
 }
