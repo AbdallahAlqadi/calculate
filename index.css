@@ -26,24 +26,45 @@ body {
     color: var(--dark-color); /* لون نص أغمق للتباين */
 }
 
+
+
 /* Adjust header to stand out against the background */
 header {
-    background-color: var(--secondary-bg); /* خلفية شفافة جزئياً */
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.3)); /* خلفية بتدرج */
     color: #fff;
-    padding: 40px 20px; /* زيادة الحشوة */
+    padding: 60px 20px; /* زيادة الحشوة */
     text-align: center;
-    box-shadow: 0 2px 10px var(--shadow-color); /* إضافة ظل */
+    box-shadow: 0 4px 20px var(--shadow-color); /* إضافة ظل */
+    border-bottom: 4px solid var(--highlight-color); /* إضافة حد أسفل */
 }
 
 header h1 {
     margin-bottom: 15px;
-    font-size: 2.8em; /* زيادة حجم العنوان */
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); /* إضافة ظل للنص */
+    font-size: 3em; /* زيادة حجم العنوان */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* إضافة ظل للنص */
+    font-family: 'Georgia', serif; /* تغيير نوع الخط */
 }
 
-header p {
-    font-size: 18px;
+header p.tagline {
+    font-size: 1.25rem; /* تغيير حجم خط الشعار */
+    font-style: italic; /* استخدام خط مائل */
 }
+
+.phone-icon {
+    display: inline-block; /* جعل الأيقونة داخل مربع */
+    margin-top: 20px;
+    padding: 10px 20px; /* إضافة حشوة */
+    background-color: var(--highlight-color); /* خلفية ملونة */
+    border-radius: 5px; /* زوايا مستديرة */
+    color: #fff; /* لون نص أبيض */
+    text-decoration: none; /* إزالة الخط من الرابط */
+    transition: background-color 0.3s ease; /* انتقال سلس عند التحويم */
+}
+
+.phone-icon:hover {
+    background-color: rgba(255, 165, 0, 0.8); /* لون مختلف عند التحويم */
+}
+
 
 /* Product Section Styling */
 .products {
