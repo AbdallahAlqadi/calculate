@@ -162,3 +162,42 @@ footer {
     margin-bottom: 12%;
     }
 }
+
+
+
+.social-icons {
+    display: flex;
+    gap: 10px; /* Adjust spacing between icons */
+    justify-content: center; /* Center icons horizontally */
+    margin-top: 10px; /* Add margin above icons */
+}
+
+.social-icon {
+    width: 40px; /* Increased width of icons */
+    height: 30px; /* Increased height of icons */
+    transition: transform 0.3s; /* Transition effect on hover */
+    zoom: 200%;
+}
+
+/* Facebook icon color */
+.social-icon.facebook {
+    fill: #2e72d8; /* Facebook blue */
+}
+
+/* Instagram icon color */
+.social-icon.instagram {
+    fill: url(#instagram-gradient); /* Use gradient for Instagram */
+}
+
+/* Icon hover effects */
+.social-icon:hover {
+    transform: scale(1.1); /* Slightly enlarge icon on hover */
+}
+
+/* Example gradient for Instagram */
+svg {
+    background: linear-gradient(45deg, #1a64ee, #2051f1, #0f40c7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
