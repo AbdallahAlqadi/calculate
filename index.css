@@ -1,203 +1,39 @@
-/* استخدام متغيرات CSS لتسهيل تغيير الألوان */
-:root {
-    --primary-bg: rgba(255, 255, 255, 0.9);
-    --secondary-bg: rgba(0, 0, 0, 0.8);
-    --dark-color: #3b3029;
-    --light-color: #fffaf0;
-    --border-color: #d2b48c;
-    --text-color: #5c4033;
-    --highlight-color: #d2691e;
-    --shadow-color: rgba(0, 0, 0, 0.3);
-}
-
-/* Reset some styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background-image: url('خلفيه.jpeg'); /* خلفية الخريطة */
-    background-size: cover; /* تأكد من ملاءمة الصورة للخلفية بالكامل */
-    background-position: center;
-    color: var(--dark-color); /* لون نص أغمق للتباين */
-}
-
-
-
-/* Adjust header to stand out against the background */
-header {
-    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.3)); /* خلفية بتدرج */
-    color: #fff;
-    padding: 60px 20px; /* زيادة الحشوة */
-    text-align: center;
-    box-shadow: 0 4px 20px var(--shadow-color); /* إضافة ظل */
-    border-bottom: 4px solid var(--highlight-color); /* إضافة حد أسفل */
-}
-
-header h1 {
-    margin-bottom: 15px;
-    font-size: 3em; /* زيادة حجم العنوان */
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* إضافة ظل للنص */
-    font-family: 'Georgia', serif; /* تغيير نوع الخط */
-}
-
-header p.tagline {
-    font-size: 1.25rem; /* تغيير حجم خط الشعار */
-    font-style: italic; /* استخدام خط مائل */
-}
-
-.phone-icon {
-    display: inline-block; /* جعل الأيقونة داخل مربع */
-    margin-top: 20px;
-    padding: 10px 20px; /* إضافة حشوة */
-    background-color: var(--highlight-color); /* خلفية ملونة */
-    border-radius: 5px; /* زوايا مستديرة */
-    color: #fff; /* لون نص أبيض */
-    text-decoration: none; /* إزالة الخط من الرابط */
-    transition: background-color 0.3s ease; /* انتقال سلس عند التحويم */
-}
-
-.phone-icon:hover {
-    background-color: rgba(255, 165, 0, 0.8); /* لون مختلف عند التحويم */
-}
-
-
-/* Product Section Styling */
-.products {
-    max-width: 1200px;
-    margin: 40px auto; /* زيادة المسافة */
-    padding: 30px; /* زيادة الحشوة */
-    background-color: var(--primary-bg); /* خلفية بيضاء شفافة قليلاً */
-    border-radius: 15px; /* زيادة الزوايا */
-    box-shadow: 0 4px 20px var(--shadow-color); /* إضافة ظل */
-
-}
-
-.products h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 30px; /* زيادة حجم العنوان */
-    color: #8b4513; /* نفس اللون البني الداكن */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* إضافة ظل للنص */
-}
-
-.product {
-    background-color: var(--light-color); /* خلفية فاتحة بلون كريم */
-    border: 1px solid var(--border-color); /* لون حد فاتح بلون بيج */
-    padding: 20px;
-    margin: 20px;
-    border-radius: 15px; /* زيادة الزوايا */
-    text-align: center;
-    box-shadow: 0 4px 8px var(--shadow-color); /* إضافة ظل */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* إضافة انتقال للظل */
-}
-
-
-
-.product h3 {
-    margin-top: 10px;
-    font-size: 24px; /* زيادة حجم العنوان */
-    color: var(--highlight-color); /* لون برتقالي داكن يوحي بالتوابل */
-}
-
-.product p {
-    font-size: 16px;
-    margin-top: 10px;
-    color: var(--text-color); /* لون النص بني */
-}
-
-/* تأثير التحويم على المنتج */
-.product:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px var(--shadow-color); /* إضافة ظل عند التحويم */
-}
-
-footer {
-    text-align: center;
-    padding: 20px; /* زيادة الحشوة */
-    background-color: var(--secondary-bg); /* بني داكن شفاف */
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -2px 10px var(--shadow-color); /* إضافة ظل */
-}
-
-.product img {
-    width: 100%;
-    max-width: 180px;
-    height: 160px; /* تم زيادة الارتفاع هنا */
-    border-radius: 15px;
-    border: 2px solid var(--border-color);
-    box-shadow: 0 4px 8px var(--shadow-color);
-    transition: transform 0.3s ease, filter 0.3s ease;
-    filter: brightness(1.1) saturate(1.2);
-}
-
-
-.product img:hover {
-    transform: scale(1.1);
-    border-color: var(--highlight-color);
-    filter: brightness(1.2) saturate(1.3);
-}
-
-/* استعلامات وسائط لجعل التصميم أكثر استجابة */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2.2em; /* تقليل حجم العنوان على الشاشات الصغيرة */
-    }
-    .product {
-        margin: 10px; /* تقليل المسافة بين المنتجات */
-    }
-}
-
-@media (min-width: 0px) and (max-width: 575px) {   
-
-    .product {
-       
-    margin-bottom: 12%;
-    }
-}
-
-
-
-.social-icons {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
     display: flex;
-    gap: 10px; /* Adjust spacing between icons */
-    justify-content: center; /* Center icons horizontally */
-    margin-top: 10px; /* Add margin above icons */
-}
-
-.social-icon {
-    width: 40px; /* Increased width of icons */
-    height: 30px; /* Increased height of icons */
-    transition: transform 0.3s; /* Transition effect on hover */
-    zoom: 200%;
-}
-
-/* Facebook icon color */
-.social-icon.facebook {
-    fill: #2e72d8; /* Facebook blue */
-}
-
-/* Instagram icon color */
-.social-icon.instagram {
-    fill: url(#instagram-gradient); /* Use gradient for Instagram */
-}
-
-/* Icon hover effects */
-.social-icon:hover {
-    transform: scale(1.1); /* Slightly enlarge icon on hover */
-}
-
-/* Example gradient for Instagram */
-svg {
-    background: linear-gradient(45deg, #1a64ee, #2051f1, #0f40c7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  textarea {
+    width: 100%;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
