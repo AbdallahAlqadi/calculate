@@ -3,112 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Export Form Data to Excel</title>
+    <title>Export Static Data</title>
     <style>
+        /* الأساسيات */
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
         }
-        form {
+
+        h1 {
+            font-size: 24px;
+            color: #333;
             margin-bottom: 20px;
         }
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-        input, button {
-            margin-bottom: 10px;
-            padding: 8px;
-            font-size: 16px;
-            width: 100%;
-            max-width: 400px;
-        }
+
+        /* تصميم الزر */
         button {
+            padding: 12px 30px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
+
+        button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
-        table, th, td {
-            border: 1px solid #000;
+
+        button:active {
+            background-color: #388e3c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        th, td {
-            padding: 8px;
+
+        /* تنسيق الورقة */
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 300px;
             text-align: center;
+        }
+
+        /* تنسيق التنبيهات */
+        .alert {
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <h1>Enter Data and Export to Excel</h1>
 
-    <!-- نموذج إدخال البيانات -->
-    <form id="data-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" placeholder="Enter Name" required>
-
-        <label for="age">Age:</label>
-        <input type="number" id="age" placeholder="Enter Age" required>
-
-        <label for="city">City:</label>
-        <input type="text" id="city" placeholder="Enter City" required>
-
-        <button type="button" onclick="addData()">Add to Table</button>
-    </form>
-
-    <!-- الجدول لعرض البيانات -->
-    <table id="data-table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>City</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- البيانات المدخلة تظهر هنا -->
-        </tbody>
-    </table>
-
-    <!-- زر تنزيل الملف -->
-    <button onclick="exportToExcel()">Download Excel</button>
+    <div class="container">
+        <h1>Export Static Data</h1>
+        <button onclick="exportStaticData()">Export Static Data</button>
+        <div id="alert" class="alert" style="display:none;"></div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
-        // إضافة البيانات إلى الجدول
-        function addData() {
-            const name = document.getElementById("name").value;
-            const age = document.getElementById("age").value;
-            const city = document.getElementById("city").value;
+        function exportStaticData() {
+            const staticData = [
+                { name: "John Doe", age: 28, city: "New York" },
+                { name: "Jane Smith", age: 34, city: "Los Angeles" },
+                { name: "Sam Wilson", age: 23, city: "Chicago" },
+                { name: "Sam Wilson", age: 23, city: "Chicago" }
+,                { name: "Sam Wilson", age: 23, city: "Chicago" },
+{ name: "Sam Wilson", age: 23, city: "Chicago" },
+{ name: "Sam Wilson", age: 23, city: "Chicago" },
+{ name: "Sam Wilson", age: 23, city: "Chicago" },
+{ name: "Sam Wilson", age: 23, city: "Chicago" },
+{ name: "Sam Wilson", age: 23, city: "Chicago" },
+{ name: "Sam Wilson", age: 23, city: "Chicago" },
+            ];
 
-            if (!name || !age || !city) {
-                alert("Please fill in all fields.");
-                return;
-            }
+            // تحويل البيانات إلى مصفوفة تحتوي على العناوين
+            const ws_data = [
+                ["Name", "Age", "City"],  // العناوين
+                ...staticData.map(item => [item.name, item.age, item.city])  // البيانات
+            ];
 
-            const tableBody = document.querySelector("#data-table tbody");
+            // تحويل البيانات إلى ورقة عمل Excel
+            const ws = XLSX.utils.aoa_to_sheet(ws_data);
 
-            // إنشاء صف جديد
-            const newRow = document.createElement("tr");
-            newRow.innerHTML = `
-                <td>${name}</td>
-                <td>${age}</td>
-                <td>${city}</td>
-            `;
+            // إنشاء كتاب عمل (workbook)
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
 
-            // إضافة الصف إلى الجدول
-            tableBody.appendChild(newRow);
+            // حفظ الملف
+            XLSX.writeFile(wb, "staticData.xlsx");
 
-            // إعادة تعيين النموذج
-            document.getElementById("data-form").reset();
-        }
-
-        // تصدير الجدول إلى ملف Excel
-        function exportToExcel() {
-            const table = document.getElementById("data-table");
-            const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
-            XLSX.writeFile(workbook, "data.xlsx");
+            // عرض رسالة تأكيد
+            const alert = document.getElementById("alert");
+            alert.textContent = "File 'staticData.xlsx' has been successfully exported!";
+            alert.style.display = "block";
         }
     </script>
 </body>
