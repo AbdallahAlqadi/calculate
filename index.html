@@ -1,68 +1,178 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مساعد الذكاء الاصطناعي المحلي</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-    }
-    input {
-      width: calc(100% - 20px);
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      background-color: #007bff;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    #response {
-      margin-top: 20px;
-      padding: 10px;
-      background: #f1f1f1;
-      border-radius: 5px;
-      white-space: pre-wrap;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export to Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>مساعد الذكاء الاصطناعي المحلي</h1>
-    <input id="userInput" type="text" placeholder="اكتب سؤالك هنا...">
-    <button id="askBtn">إرسال</button>
-    <div id="response"></div>
-  </div>
+    <h1>Export Table Data to Excel</h1>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>28</td>
+                <td>New York</td>
+            </tr>
+            <tr>
+              <td>John Doe</td>
+              <td>28</td>
+              <td>New York</td>
+          </tr>
+          <tr>
+            <td>John Doe</td>
+            <td>28</td>
+            <td>New York</td>
+        </tr>
+        <tr>
+          <td>John Doe</td>
+          <td>28</td>
+          <td>New York</td>
+      </tr>
+      <tr>
+        <td>John Doe</td>
+        <td>28</td>
+        <td>New York</td>
+    </tr>
+    <tr>
+      <td>John Doe</td>
+      <td>28</td>
+      <td>New York</td>
+  </tr>
+  <tr>
+    <td>John Doe</td>
+    <td>28</td>
+    <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+<tr>
+  <td>John Doe</td>
+  <td>28</td>
+  <td>New York</td>
+</tr>
+            <tr>
+                <td>Jane Smith</td>
+                <td>34</td>
+                <td>Los Angeles</td>
+            </tr>
+            <tr>
+                <td>Sam Wilson</td>
+                <td>23</td>
+                <td>Chicago</td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="exportToExcel()">Download Excel</button>
 
-  <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        function exportToExcel() {
+            // اختيار الجدول
+            const table = document.getElementById("data-table");
+            const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+            
+            // إنشاء ملف Excel
+            XLSX.writeFile(workbook, "data.xlsx");
+        }
+    </script>
 </body>
 </html>
