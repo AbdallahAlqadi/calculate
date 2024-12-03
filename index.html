@@ -3,16 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Export to Excel</title>
+    <title>Export Form Data to Excel</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, button {
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 400px;
+        }
+        button {
+            cursor: pointer;
+        }
         table {
             border-collapse: collapse;
             width: 100%;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
         table, th, td {
             border: 1px solid #000;
@@ -21,15 +38,26 @@
             padding: 8px;
             text-align: center;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
-    <h1>Export Table Data to Excel</h1>
+    <h1>Enter Data and Export to Excel</h1>
+
+    <!-- نموذج إدخال البيانات -->
+    <form id="data-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter Name" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" placeholder="Enter Age" required>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" placeholder="Enter City" required>
+
+        <button type="button" onclick="addData()">Add to Table</button>
+    </form>
+
+    <!-- الجدول لعرض البيانات -->
     <table id="data-table">
         <thead>
             <tr>
@@ -39,138 +67,47 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>John Doe</td>
-                <td>28</td>
-                <td>New York</td>
-            </tr>
-            <tr>
-              <td>John Doe</td>
-              <td>28</td>
-              <td>New York</td>
-          </tr>
-          <tr>
-            <td>John Doe</td>
-            <td>28</td>
-            <td>New York</td>
-        </tr>
-        <tr>
-          <td>John Doe</td>
-          <td>28</td>
-          <td>New York</td>
-      </tr>
-      <tr>
-        <td>John Doe</td>
-        <td>28</td>
-        <td>New York</td>
-    </tr>
-    <tr>
-      <td>John Doe</td>
-      <td>28</td>
-      <td>New York</td>
-  </tr>
-  <tr>
-    <td>John Doe</td>
-    <td>28</td>
-    <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-<tr>
-  <td>John Doe</td>
-  <td>28</td>
-  <td>New York</td>
-</tr>
-            <tr>
-                <td>Jane Smith</td>
-                <td>34</td>
-                <td>Los Angeles</td>
-            </tr>
-            <tr>
-                <td>Sam Wilson</td>
-                <td>23</td>
-                <td>Chicago</td>
-            </tr>
+            <!-- البيانات المدخلة تظهر هنا -->
         </tbody>
     </table>
+
+    <!-- زر تنزيل الملف -->
     <button onclick="exportToExcel()">Download Excel</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
+        // إضافة البيانات إلى الجدول
+        function addData() {
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const city = document.getElementById("city").value;
+
+            if (!name || !age || !city) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            const tableBody = document.querySelector("#data-table tbody");
+
+            // إنشاء صف جديد
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${name}</td>
+                <td>${age}</td>
+                <td>${city}</td>
+            `;
+
+            // إضافة الصف إلى الجدول
+            tableBody.appendChild(newRow);
+
+            // إعادة تعيين النموذج
+            document.getElementById("data-form").reset();
+        }
+
+        // تصدير الجدول إلى ملف Excel
         function exportToExcel() {
-            // اختيار الجدول
             const table = document.getElementById("data-table");
             const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
-            
-            // إنشاء ملف Excel
             XLSX.writeFile(workbook, "data.xlsx");
         }
     </script>
