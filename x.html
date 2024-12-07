@@ -50,15 +50,24 @@
                         var td3 = document.createElement('td');
                         var td4 = document.createElement('td');
 
+
                         var buttonShow = document.createElement('button');
                         var buttonDelete = document.createElement('button');
 
                         buttonShow.textContent = 'Show';
                         buttonDelete.textContent = 'Delete';
 
+
+                        //call delete
                         buttonDelete.onclick = function () {
                             delete_employee(emp.id);
                         };
+
+  //CALL SHOW
+buttonShow.onclick=function(){
+    Show(emp.id,emp.name,emp.department,emp.unusedVacationDays,emp.annualSarary,emp.dateOfBirth)
+}
+
 
                         td1.textContent = emp.id;
                         td2.textContent = emp.name;
@@ -84,6 +93,22 @@
                 fetch(`${url}/${id}`, { method: 'DELETE' }).then(() => {
                     getdata()                });
             }
+        }
+
+
+
+        //SHOW
+
+        function Show(id,name,department,unusedVacationDays,annualSarary,dateOfBirth){
+            var emp_id=document.getElementById('emp_id');
+            emp_id.innerHTML=id;
+            var emp_name=document.getElementById('emp_name');
+            emp_name.innerHTML=name;
+            var emp_salary=document.getElementById('emp_salary');
+            emp_salary.innerHTML=annualSarary;
+            var emp_dob=document.getElementById('emp_dob');
+            emp_dob.innerHTML=dateOfBirth;            
+
         }
 
         //LOAD
