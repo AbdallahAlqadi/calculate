@@ -50,6 +50,9 @@ fetch(url,{method:"POST",body:JSON.stringify(emp),headers:{"Content-Type":'appli
                     var buttonDelete=document.createElement('button')
 buttonshow.innerHTML='buttonshow'
 buttonDelete.innerHTML='buttonDelete'
+buttonDelete.onclick=function(){
+    delete_employee(emp.id)
+}
 
                     td1.textContent = emp.id;
                     td2.textContent = emp.name;
@@ -73,6 +76,18 @@ td4.append(buttonDelete)
     getdata();
 });
      
+
+
+
+function delete_employee(id){
+    fetch(`${url}/${id}`, {method:'DELETE'})
+    if (window.confirm('Are you sure?')) {
+                    fetch(`${url}/${id}`, { method: 'DELETE'})
+                        getdata()  
+
+                }
+}
+
         </script>
 	</head>
 
