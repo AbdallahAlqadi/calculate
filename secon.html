@@ -1,0 +1,259 @@
+<html>
+	<head>
+		<title>Intro to JavaScript</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+
+        <script>
+            const url = 'https://just-web-apps-first-2024-2025.azurewebsites.net/api/employees';
+            let employees = [];
+
+            function on_page_load() {
+                get_all_employees();
+
+                document.getElementById('txtsearch').addEventListener('input', search_employee);
+            }
+
+            //
+            //Important
+            //
+            function get_all_employees() {
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        employees = data;
+
+                        fill_table(data);
+                    });
+            }
+
+            function fill_table(data) {
+                let table_body = document.getElementById("tb");
+
+                table_body.innerHTML = '';
+
+                for (let emp of data) {
+                    let row = document.createElement('tr');
+                    let cellId = document.createElement('td');
+                    let cellName = document.createElement('td');
+                    let cellSalary = document.createElement('td');
+                    let cellActions = document.createElement('td');
+                    let buttonView = document.createElement('button');
+                    let buttonDelete = document.createElement('button');
+
+
+                    cellId.textContent = emp.id;
+                    cellName.textContent = emp.name;
+                    cellSalary.textContent = emp.annualSarary;
+                    buttonView.textContent = 'View';
+                    buttonDelete.textContent = 'Delete';
+
+                    buttonView.className = 'btn btn-primary btn-sm';
+                    buttonView.dataset.id = emp.id;
+                    buttonView.addEventListener('click', display_employee);
+
+                    buttonDelete.className = 'btn btn-danger btn-sm';
+                    buttonDelete.dataset.id = emp.id;
+                    buttonDelete.addEventListener('click', delete_employee);
+
+                    cellActions.append(buttonView, buttonDelete);
+
+                    row.appendChild(cellId);
+                    row.appendChild(cellName);
+                    row.appendChild(cellSalary);
+                    row.appendChild(cellActions);
+
+                    table_body.appendChild(row);
+                }
+
+                const sum = data.reduce((total, current) => total + current.annualSarary, 0);
+                const avg = sum / data.length;
+
+                document.getElementById('thaverage').textContent = avg;
+            }
+
+            //
+            //Important
+            //
+            function display_employee(e) {
+                const btn = e.target;
+                const emp_id = btn.dataset.id;
+
+                fetch(`${url}/${emp_id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        fill_employee(data);
+                    });
+            }
+
+            function fill_employee(data) {
+                document.getElementById('emp_id').textContent = data.id;
+                document.getElementById('emp_name').textContent = data.name;
+                document.getElementById('emp_salary').textContent = data.annualSarary;
+                document.getElementById('emp_dob').textContent = new Date(data.dateOfBirth).toDateString();
+                document.getElementById('emp_dept').textContent = data.department.toUpperCase();
+                document.getElementById('emp_vac_days').textContent = data.unusedVacationDays;
+            }
+
+            //
+            //Important
+            //
+            function add_employee() {
+                const txt_id = document.getElementById('txtId');
+                const txt_name = document.getElementById('txtName');
+                const txt_salary = document.getElementById('txtSalary');
+                const txt_dob = document.getElementById('txtDateOfBirth');
+                const txt_dept = document.getElementById('selectDepartment');
+
+                let emp = {
+                    id: parseInt(txt_id.value),
+                    name: txt_name.value,
+                    annualSarary: parseInt(txt_salary.value),
+                    dateOfBirth: txt_dob.value,
+                    department: txt_dept.value,
+                    unusedVacationDays: 21
+                };
+
+                fetch(url, { method: 'POST', body: JSON.stringify(emp), headers: { "Content-Type": "application/json"} })
+                    .then(() => {
+                        get_all_employees();
+                    });
+            }
+
+            //
+            //Important
+            //
+            function delete_employee(e) {
+                const btn = e.target;
+                const emp_id = btn.dataset.id;
+
+                if (window.confirm('Are you sure?')) {
+                    fetch(`${url}/${emp_id}`, { method: 'DELETE'})
+                        .then(() => {
+                            get_all_employees();
+                        });
+                }
+            }
+
+            //
+            //Important
+            //
+            function search_employee(e) {
+                const val = e.target.value;
+
+                const filtered = employees.filter(p => p.name.toLowerCase().indexOf(val.toLowerCase()) !== -1 || p.id.toString().indexOf(val) !== -1);
+
+                fill_table(filtered);
+            }
+
+            window.addEventListener('load', on_page_load);
+
+            
+        </script>
+	</head>
+
+	<body class="m-5">
+        <div class="row">
+            <div class="col-8">
+                <div>
+                    <input id="txtsearch" class="form-control" />
+                </div>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Emp Id</th>
+                            <th>Emp Name</th>
+                            <th>Salary</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+        
+                    <tbody id="tb">
+        
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th colspan="2">Average</th>
+                            <th id="thaverage"></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="col-4">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <th>Employee Id</th>
+                            <td><span id="emp_id"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Employee Name</th>
+                            <td><span id="emp_name"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Annual Salary</th>
+                            <td><span id="emp_salary"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Date of Birth</th>
+                            <td><span id="emp_dob"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Department</th>
+                            <td><span id="emp_dept"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Vacation Days</th>
+                            <td><span id="emp_vac_days"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <divn class="row">
+            <div class="col-6">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Employee Id</label>
+                        <input type="text" class="form-control" id="txtId" placeholder="">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Employee Name</label>
+                        <input type="text" class="form-control" id="txtName" placeholder="E.g., John Smith">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Annual Salary</label>
+                        <input type="text" class="form-control" id="txtSalary" placeholder="">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="txtDateOfBirth" placeholder="">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Department</label>
+                        <select id="selectDepartment" class="form-control">
+                            <option value=""></option>
+                            <option value="sales">Sales Department</option>
+                            <option value="marketing">Marketing Department</option>
+                            <option value="it">IT Department</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-success" onclick="add_employee()">Add Employee</button>
+                    </div>
+                </form>
+            </div>
+        </divn>
+        
+	</body>
+
+</html>
