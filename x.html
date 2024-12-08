@@ -28,10 +28,12 @@
                 body: JSON.stringify(emp),
                 headers: { "Content-Type": 'application/json' }
             }).then(() => {
-                getdata();         
+                getdata();    
+                
             });
+              
         }
-
+        
         // GET
         function getdata() {
             var tb = document.getElementById('tb');
@@ -62,7 +64,7 @@
 
                         // Call show
                         buttonShow.onclick = function () {
-                            Show(emp);
+                            Show(emp.id);
                            
                         };
 
@@ -94,13 +96,17 @@
         }
 
         // SHOW
-        function Show(emp) {
-            document.getElementById('emp_id').innerHTML = emp.id ;
-            document.getElementById('emp_name').innerHTML = emp.name ;
-            document.getElementById('emp_salary').innerHTML = emp.annualSarary ;
-            document.getElementById('emp_dob').innerHTML = emp.dateOfBirth ;
-            document.getElementById('emp_dept').innerHTML = emp.department ;
-            document.getElementById('emp_vac_days').innerHTML = emp.unusedVacationDays ;
+        function Show(id) {
+            fetch(`${url}/${id}`, { method: 'GET' })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('emp_id').innerHTML = data.id ;
+            document.getElementById('emp_name').innerHTML = data.name ;
+            document.getElementById('emp_salary').innerHTML = data.annualSarary ;
+            document.getElementById('emp_dob').innerHTML = data.dateOfBirth ;
+            document.getElementById('emp_dept').innerHTML = data.department ;
+            document.getElementById('emp_vac_days').innerHTML = data.unusedVacationDays ;            })
+           
         }
 
         // DOMContentLoaded
