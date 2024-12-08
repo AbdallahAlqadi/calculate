@@ -1,33 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+    <title>Intro to JavaScript</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <script>
-const paintings = [
-  { title: "The Starry Night", artist: "Van Gogh", year: 1889 },
-  { title: "The Persistence of Memory", artist: "Dali", year: 1931 },
-  { title: "Sunflowers", artist: "Van Gogh", year: 1888 },
-  { title: "Guernica", artist: "Picasso", year: 1937 },
-  { title: "Mona Lisa", artist: "Da Vinci", year: 1503 }
-];
+        const url = 'https://just-web-apps-first-2024-2025.azurewebsites.net/api/employees';
 
-const sortedPaintingsByYear = paintings.sort(function(a, b) {
-  if (a.year < b.year)
-    return -1; // ترتيب a قبل b
-  else if (a.year > b.year)
-    return 1;  // ترتيب a بعد b
-  else
-    return 0;  // نفس السنة لا يتم التغيير
-});
 
-console.log(sortedPaintingsByYear);
+        //post
+function add_employee(){
+            var name = document.getElementById('txtName').value;
+            var id = document.getElementById('txtId').value;
+            var txtSalary = document.getElementById('txtSalary').value;
+            var txtDateOfBirth = document.getElementById('txtDateOfBirth').value;
+            var selectDepartment = document.getElementById('selectDepartment').value;
+
+  const emp={
+    "id":id,
+    "name":name,
+    "annualSarary":txtSalary,
+    "department":selectDepartment,
+    "unusedVacationDays":12,
+    "dateOfBirth":txtDateOfBirth
+
+  }
+
+  fetch(url, {
+                method: "POST",
+                body: JSON.stringify(emp),
+                headers: { "Content-Type": 'application/json' }
+            })  .then(()=>{
+    alert("Employee added");
+  console.log(emp)
+  })
+
+} 
+
+function getdata(){
+  fetch(url)
+  .then(response => response.json())
+  .then(data => console.log(data))
+}
+
+getdata()
 
 
     </script>
+</head>
+
+<body class="m-5">
+    <div class="row">
+        <div class="col-8">
+            <div>
+                <input id="txtsearch" class="form-control" />
+            </div>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Emp Id</th>
+                        <th>Emp Name</th>
+                        <th>Salary</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tb">
+
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <th colspan="2">Average</th>
+                        <th id="thaverage"></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="col-4">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <th>Employee Id</th>
+                        <td><span id="emp_id"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Employee Name</th>
+                        <td><span id="emp_name"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Annual Salary</th>
+                        <td><span id="emp_salary"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Date of Birth</th>
+                        <td><span id="emp_dob"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Department</th>
+                        <td><span id="emp_dept"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Vacation Days</th>
+                        <td><span id="emp_vac_days"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Employee Id</label>
+                    <input type="text" class="form-control" id="txtId" placeholder="">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Employee Name</label>
+                    <input type="text" class="form-control" id="txtName" placeholder="E.g., John Smith">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Annual Salary</label>
+                    <input type="text" class="form-control" id="txtSalary" placeholder="">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="txtDateOfBirth" placeholder="">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Department</label>
+                    <select id="selectDepartment" class="form-control">
+                        <option value=""></option>
+                        <option value="sales">Sales Department</option>
+                        <option value="marketing">Marketing Department</option>
+                        <option value="it">IT Department</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <button type="button" class="btn btn-success" onclick="add_employee()">Add Employee</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
