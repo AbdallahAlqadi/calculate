@@ -31,20 +31,50 @@ function add_employee(){
                 body: JSON.stringify(emp),
                 headers: { "Content-Type": 'application/json' }
             })  .then(()=>{
-    alert("Employee added");
-  console.log(emp)
+              getdata();
   })
 
 } 
 
 function getdata(){
+
+  var tb = document.getElementById('tb');
+  tb.innerHTML = ''; 
+
   fetch(url)
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data =>{
+    for(var i of data){
+      var tr1=document.createElement('tr')
+      var td1=document.createElement('td')
+      var td2=document.createElement('td')
+      var td3=document.createElement('td')
+      var td4=document.createElement('td')
+      td1.innerHTML=i.id;
+      td2.innerHTML=i.name;
+      td3.innerHTML=i.annualSarary;
+
+var deletebutton=document.createElement('button')
+deletebutton.innerHTML="Delete"
+var showbutton=document.createElement('button')
+showbutton.innerHTML="Show"
+tr1.append(td1)
+tr1.append(td2)
+tr1.append(td3)
+
+td4.append(deletebutton)
+td4.append(showbutton)
+tr1.append(td4)
+tb.appendChild(tr1)
+
+
+    }
+
+  } )
 }
-
-getdata()
-
+document.addEventListener('DOMContentLoaded', function () {
+            getdata();
+        });
 
     </script>
 </head>
