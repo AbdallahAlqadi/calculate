@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+const paintings = [
+  { title: "The Starry Night", artist: "Van Gogh", year: 1889 },
+  { title: "The Persistence of Memory", artist: "Dali", year: 1931 },
+  { title: "Sunflowers", artist: "Van Gogh", year: 1888 },
+  { title: "Guernica", artist: "Picasso", year: 1937 },
+  { title: "Mona Lisa", artist: "Da Vinci", year: 1503 }
+];
+
+const sortedPaintingsByYear = paintings.sort(function(a, b) {
+  if (a.year < b.year)
+    return -1; // ترتيب a قبل b
+  else if (a.year > b.year)
+    return 1;  // ترتيب a بعد b
+  else
+    return 0;  // نفس السنة لا يتم التغيير
+});
+
+console.log(sortedPaintingsByYear);
+
+
+    </script>
+</body>
+</html>

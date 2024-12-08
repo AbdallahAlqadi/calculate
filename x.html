@@ -35,13 +35,13 @@
         // GET
         function getdata() {
             var tb = document.getElementById('tb');
-            tb.innerHTML = ''; // Clear existing rows
+            tb.innerHTML = ''; 
 
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     for (let emp of data) {
-                        console.log(emp); // التحقق من البيانات المستلمة من الـ API
+                    
                         
                         var tr = document.createElement('tr');
                         var td1 = document.createElement('td');
@@ -63,11 +63,12 @@
                         // Call show
                         buttonShow.onclick = function () {
                             Show(emp);
+                           
                         };
 
-                        td1.textContent = emp.id || 'N/A';
-                        td2.textContent = emp.name || 'N/A';
-                        td3.textContent = emp.annualSarary || 'N/A';
+                        td1.textContent = emp.id ;
+                        td2.textContent = emp.name ;
+                        td3.textContent = emp.annualSarary ;
 
                         td4.append(buttonShow);
                         td4.append(buttonDelete);
@@ -85,7 +86,8 @@
         // DELETE
         function delete_employee(id) {
             if (window.confirm('Are you sure you want to delete this employee?')) {
-                fetch(`${url}/${id}`, { method: 'DELETE' }).then(() => {
+                fetch(`${url}/${id}`, { method: 'DELETE' })
+                .then(() => {
                     getdata();
                 });
             }
@@ -93,7 +95,6 @@
 
         // SHOW
         function Show(emp) {
-            console.log(emp); // التحقق من البيانات المرسلة إلى الدالة
             document.getElementById('emp_id').innerHTML = emp.id ;
             document.getElementById('emp_name').innerHTML = emp.name ;
             document.getElementById('emp_salary').innerHTML = emp.annualSarary ;
@@ -102,7 +103,7 @@
             document.getElementById('emp_vac_days').innerHTML = emp.unusedVacationDays ;
         }
 
-        // LOAD
+        // DOMContentLoaded
         document.addEventListener('DOMContentLoaded', function () {
             getdata();
         });
