@@ -101,7 +101,7 @@
 
         // SHOW
         function Show(id) {
-            fetch(`${url}/${id}`, { method: 'GET' })
+          fetch(`${url}/${id}`, { method: 'GET' })
             .then(response => response.json())
             .then(data => {
                 document.getElementById('emp_id').innerHTML = data.id ;
@@ -112,8 +112,9 @@
             document.getElementById('emp_vac_days').innerHTML = data.unusedVacationDays ;            })
            
         }
+   
 
-        // DOMContentLoaded
+        // // DOMContentLoaded
         document.addEventListener('DOMContentLoaded', function () {
             getdata();
         });
