@@ -52,7 +52,7 @@ function fillteremp(){
   .then(response => response.json())
   .then(data =>{
     var txtsearch = document.getElementById('txtsearch').value;
-    const filtered = data.filter(p => p.name.toLowerCase().indexOf(txtsearch.toLowerCase()) !== -1 || p.id.toString().indexOf(txtsearch) !== -1);
+    const filtered=data.filter(p => p.name.toLowerCase().indexOf(txtsearch.toLowerCase()) !==-1 || p.id.toString().indexOf(txtsearch)!==-1)
     getdata(filtered)
   })
   
