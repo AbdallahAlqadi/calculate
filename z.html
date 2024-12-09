@@ -31,19 +31,38 @@ function add_employee(){
                 body: JSON.stringify(emp),
                 headers: { "Content-Type": 'application/json' }
             })  .then(()=>{
-              getdata();
+                allemployee();
   })
 
-} 
+}
 
-function getdata(){
+
+//getallemp
+function allemployee(){
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        getdata(data)
+    })
+}
+
+function fillteremp(){
+    fetch(url)
+  .then(response => response.json())
+  .then(data =>{
+    var txtsearch = document.getElementById('txtsearch').value;
+    const filtered = data.filter(p => p.name.toLowerCase().indexOf(txtsearch.toLowerCase()) !== -1 || p.id.toString().indexOf(txtsearch) !== -1);
+    getdata(filtered)
+  })
+  
+}
+
+function getdata(data){
 
   var tb = document.getElementById('tb');
   tb.innerHTML = ''; 
 
-  fetch(url)
-  .then(response => response.json())
-  .then(data =>{
+
     for(var i of data){
       var tr1=document.createElement('tr')
       var td1=document.createElement('td')
@@ -58,6 +77,14 @@ var deletebutton=document.createElement('button')
 deletebutton.innerHTML="Delete"
 var showbutton=document.createElement('button')
 showbutton.innerHTML="Show"
+deletebutton.onclick=function(){
+    deleteemp(i.id)
+}
+
+showbutton.onclick=function(){
+    showemp(i.id)
+}
+
 tr1.append(td1)
 tr1.append(td2)
 tr1.append(td3)
@@ -70,10 +97,38 @@ tb.appendChild(tr1)
 
     }
 
-  } )
+ 
 }
+
+function deleteemp(id){
+    fetch(`${url}/${id}`,{method:"DELETE"})
+    .then(()=>{
+        alert("done")
+        allemployee();
+
+
+    })
+}
+
+function showemp(id){
+fetch(`${url}/${id}`)
+.then(response=>response.json())
+.then(data=>{
+    console.log(data)
+    document.getElementById('emp_id').innerHTML = data.id ;
+            document.getElementById('emp_name').innerHTML = data.name ;
+            document.getElementById('emp_salary').innerHTML = data.annualSarary ;
+            document.getElementById('emp_dob').innerHTML = data.dateOfBirth ;
+            document.getElementById('emp_dept').innerHTML = data.department ;
+            document.getElementById('emp_vac_days').innerHTML = data.unusedVacationDays ;
+})
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
-            getdata();
+    allemployee();
+    document.getElementById('txtsearch').addEventListener('input', fillteremp);
+
         });
 
     </script>
