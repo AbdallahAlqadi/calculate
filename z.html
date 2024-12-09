@@ -120,7 +120,7 @@ fetch(`${url}/${id}`)
     document.getElementById('emp_id').innerHTML = data2.id ;
             document.getElementById('emp_name').innerHTML = data2.name ;
             document.getElementById('emp_salary').innerHTML = data2.annualSarary ;
-            document.getElementById('emp_dob').innerHTML = data2.dateOfBirth ;
+            document.getElementById('emp_dob').innerHTML =new Date(data2.dateOfBirth).toDateString();
             document.getElementById('emp_dept').innerHTML = data2.department ;
             document.getElementById('emp_vac_days').innerHTML = data2.unusedVacationDays ;
 })
