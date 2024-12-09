@@ -101,6 +101,7 @@ tb.appendChild(tr1)
  
 }
 
+
 function deleteemp(id){
     fetch(`${url}/${id}`,{method:"DELETE"})
 
@@ -112,17 +113,16 @@ function deleteemp(id){
     })
 }
 
-function showemp(id){
+ function showemp(id){
 fetch(`${url}/${id}`)
 .then(response=>response.json())
-.then(data=>{
-    console.log(data)
-    document.getElementById('emp_id').innerHTML = data.id ;
-            document.getElementById('emp_name').innerHTML = data.name ;
-            document.getElementById('emp_salary').innerHTML = data.annualSarary ;
-            document.getElementById('emp_dob').innerHTML = data.dateOfBirth ;
-            document.getElementById('emp_dept').innerHTML = data.department ;
-            document.getElementById('emp_vac_days').innerHTML = data.unusedVacationDays ;
+.then(data2=>{
+    document.getElementById('emp_id').innerHTML = data2.id ;
+            document.getElementById('emp_name').innerHTML = data2.name ;
+            document.getElementById('emp_salary').innerHTML = data2.annualSarary ;
+            document.getElementById('emp_dob').innerHTML = data2.dateOfBirth ;
+            document.getElementById('emp_dept').innerHTML = data2.department ;
+            document.getElementById('emp_vac_days').innerHTML = data2.unusedVacationDays ;
 })
 }
 
