@@ -103,14 +103,15 @@ tb.appendChild(tr1)
 
 
 function deleteemp(id){
+    if(window.confirm('are you shore')){
     fetch(`${url}/${id}`,{method:"DELETE"})
 
     .then(()=>{
-        alert("done")
         allemployee();
 
 
     })
+}
 }
 
  function showemp(id){
